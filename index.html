@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JURISYNC - AI For Legal Integrity</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #120202;
+            /* Deep dark background matching design reference */
+        }
+    </style>
+</head>
+
+<body class="text-gray-100 min-h-screen flex flex-col">
+
+    <!-- Top Navigation Bar -->
+    <header class="border-b border-red-900/30 bg-[#1a0505] px-6 py-4 flex items-center justify-between shadow-lg">
+        <div class="flex items-center space-x-3">
+            <!-- Balance/Scale Icon (Placeholder for logo) -->
+            <div class="text-cyan-400 font-bold text-2xl tracking-wider flex items-center gap-2">
+                <span>⚖️</span> JURISYNC
+            </div>
+            <span
+                class="text-xs text-gray-400 border border-gray-700 rounded px-2 py-0.5 uppercase tracking-widest hidden md:inline-block">AI
+                For Legal Integrity</span>
+        </div>
+        <nav class="hidden md:flex space-x-6 text-sm font-medium tracking-wide text-gray-300">
+            <a href="#" class="text-cyan-400 border-b-2 border-cyan-400 pb-1">HOME</a>
+            <a href="#" class="hover:text-cyan-400 transition">FEATURES</a>
+            <a href="#" class="hover:text-cyan-400 transition">HOW IT WORKS</a>
+            <a href="#" class="hover:text-cyan-400 transition">MODULES</a>
+        </nav>
+        <div class="flex items-center space-x-3">
+            <div
+                class="bg-red-950 text-red-400 border border-red-900/50 text-xs font-semibold px-3 py-1.5 rounded uppercase tracking-wider">
+                Demo Environment
+            </div>
+        </div>
+    </header>
+
+    <div class="flex flex-1 flex-col lg:flex-row">
+        <!-- Sidebar Navigation -->
+        <aside
+            class="w-full lg:w-64 bg-[#160404] border-r border-red-900/20 p-4 space-y-2 flex flex-row lg:flex-col justify-between lg:justify-start overflow-x-auto lg:overflow-x-visible">
+            <div class="flex lg:flex-col space-x-2 lg:space-x-0 lg:space-y-1 w-full">
+                <button
+                    class="w-full text-left px-3 py-2.5 rounded bg-red-950/40 text-cyan-400 font-medium flex items-center space-x-3 text-sm">
+                    <span>📊</span> <span>Dashboard</span>
+                </button>
+                <button
+                    class="w-full text-left px-3 py-2.5 rounded hover:bg-red-950/20 text-gray-400 hover:text-gray-200 transition flex items-center space-x-3 text-sm">
+                    <span>📄</span> <span>Reports</span>
+                </button>
+                <button
+                    class="w-full text-left px-3 py-2.5 rounded hover:bg-red-950/20 text-gray-400 hover:text-gray-200 transition flex items-center space-x-3 text-sm">
+                    <span>📁</span> <span>Documents</span>
+                </button>
+                <button
+                    class="w-full text-left px-3 py-2.5 rounded hover:bg-red-950/20 text-gray-400 hover:text-gray-200 transition flex items-center space-x-3 text-sm">
+                    <span>🔍</span> <span>Sources</span>
+                </button>
+            </div>
+            <div class="hidden lg:block pt-8 border-t border-red-900/20 mt-auto">
+                <div class="text-xs text-gray-500 font-semibold tracking-wider uppercase mb-2">System Status</div>
+                <div
+                    class="flex items-center space-x-2 text-xs text-emerald-400 bg-emerald-950/20 border border-emerald-900/30 p-2 rounded">
+                    <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>All Engines Online (v2.1)</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Dashboard -->
+        <main class="flex-1 p-6 space-y-6 overflow-y-auto">
+
+            <!-- Quick Demo Select Banner -->
+            <div
+                class="bg-gradient-to-r from-cyan-950/40 to-red-950/30 border border-cyan-900/40 p-4 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-lg font-semibold text-cyan-300">Hackathon Demo Controls</h2>
+                    <p class="text-xs text-gray-400">Switch between preloaded edge cases to demonstrate real-time
+                        frontend structural processing.</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <label for="doc-selector" class="text-xs text-gray-300 font-medium shrink-0">Active File:</label>
+                    <select id="doc-selector" onchange="switchDemoDocument(this.value)"
+                        class="bg-[#240a0a] text-sm text-cyan-400 border border-cyan-900/60 rounded px-3 py-1.5 focus:outline-none focus:border-cyan-400 font-mono">
+                        <option value="doc1">Research_Paper_Eg.docx</option>
+                        <option value="doc2">Ip_Infringement_Draft.pdf</option>
+                        <option value="doc3">Corporate_Contract_v2.txt</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Breadcrumbs / Top Profile -->
+            <div class="flex items-center justify-between">
+                <div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wider">Dashboard &gt; Analysis Result</div>
+                    <h1 id="lbl-filename" class="text-2xl font-bold text-gray-100 mt-1 font-mono">Research_Paper_Eg.docx
+                    </h1>
+                </div>
+                <button onclick="alert('Exporting verified legal audit trace summary...')"
+                    class="bg-cyan-600 hover:bg-cyan-500 text-white font-medium text-xs px-4 py-2 rounded shadow transition tracking-wide uppercase">
+                    Download PDF Report
+                </button>
+            </div>
+
+            <!-- Metric Progress Row -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Originality -->
+                <div
+                    class="bg-[#1a0505] border border-red-900/20 p-4 rounded-xl flex flex-col items-center justify-center relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-cyan-500/5 opacity-0 group-hover:opacity-100 transition"></div>
+                    <span class="text-xs text-gray-400 font-semibold uppercase mb-3">Originality Score</span>
+                    <div class="relative flex items-center justify-center w-24 h-24">
+                        <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-gray-800" stroke-width="3" stroke="currentColor" fill="none"
+                                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <path id="svg-originality-path" class="text-cyan-500 transition-all duration-500"
+                                stroke-dasharray="92, 100" stroke-width="3" stroke-linecap="round" stroke="currentColor"
+                                fill="none"
+                                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        </svg>
+                        <span id="lbl-originality" class="absolute text-xl font-bold font-mono text-cyan-400">92%</span>
+                    </div>
+                </div>
+
+                <!-- AI Predictability -->
+                <div
+                    class="bg-[#1a0505] border border-red-900/20 p-4 rounded-xl flex flex-col items-center justify-center relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-red-500/5 opacity-0 group-hover:opacity-100 transition"></div>
+                    <span class="text-xs text-gray-400 font-semibold uppercase mb-3">AI Predictability</span>
+                    <div class="relative flex items-center justify-center w-24 h-24">
+                        <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-gray-800" stroke-width="3" stroke="currentColor" fill="none"
+                                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <path id="svg-ai-path" class="text-red-500 transition-all duration-500"
+                                stroke-dasharray="76, 100" stroke-width="3" stroke-linecap="round" stroke="currentColor"
+                                fill="none"
+                                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        </svg>
+                        <span id="lbl-ai" class="absolute text-xl font-bold font-mono text-red-400">76%</span>
+                    </div>
+                </div>
+
+                <!-- Copyright Risk -->
+                <div
+                    class="bg-[#1a0505] border border-red-900/20 p-4 rounded-xl flex flex-col items-center justify-center relative overflow-hidden group">
+                    <span class="text-xs text-gray-400 font-semibold uppercase mb-3">Copyright Risk</span>
+                    <div class="relative flex items-center justify-center w-24 h-24">
+                        <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-gray-800" stroke-width="3" stroke="currentColor" fill="none"
+                                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <path id="svg-copyright-path" class="text-orange-500 transition-all duration-500"
+                                stroke-dasharray="67, 100" stroke-width="3" stroke-linecap="round" stroke="currentColor"
+                                fill="none"
+                                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        </svg>
+                        <span id="lbl-copyright" class="absolute text-xl font-bold font-mono text-orange-400">67%</span>
+                    </div>
+                </div>
+
+                <!-- Overall Risk Tag -->
+                <div
+                    class="bg-[#1a0505] border border-red-900/20 p-4 rounded-xl flex flex-col items-center justify-center">
+                    <span class="text-xs text-gray-400 font-semibold uppercase mb-2">Risk Evaluation</span>
+                    <div id="badge-risk"
+                        class="text-lg font-bold uppercase tracking-wider px-6 py-2 rounded bg-orange-950/50 text-orange-400 border border-orange-900/40 my-1">
+                        MEDIUM
+                    </div>
+                    <span class="text-[11px] text-gray-400 mt-2 text-center">Multi-layer alignment threshold
+                        triggered</span>
+                </div>
+            </div>
+
+            <!-- Center Content Structure: Grid Panel -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Content Overview & Statistical Breakdown -->
+                <div class="bg-[#1a0505] border border-red-900/20 p-5 rounded-xl space-y-4">
+                    <h3
+                        class="text-sm font-bold tracking-wider uppercase text-gray-300 border-b border-red-900/20 pb-2">
+                        Content Footprint Overview</h3>
+                    <div class="grid grid-cols-2 gap-4 text-xs">
+                        <div class="bg-black/20 p-3 rounded border border-red-900/10">
+                            <div class="text-gray-400">Total Words</div>
+                            <div id="stat-words" class="text-lg font-bold font-mono text-gray-200 mt-1">2,456</div>
+                        </div>
+                        <div class="bg-black/20 p-3 rounded border border-red-900/10">
+                            <div class="text-gray-400">Matched Footprints</div>
+                            <div id="stat-sources" class="text-lg font-bold font-mono text-gray-200 mt-1">18</div>
+                        </div>
+                        <div class="bg-black/20 p-3 rounded border border-red-900/10">
+                            <div class="text-gray-400">AI Clusters Found</div>
+                            <div id="stat-sections" class="text-lg font-bold font-mono text-red-400 mt-1">5</div>
+                        </div>
+                        <div class="bg-black/20 p-3 rounded border border-red-900/10">
+                            <div class="text-gray-400">Missing Citations</div>
+                            <div id="stat-citations" class="text-lg font-bold font-mono text-orange-400 mt-1">4</div>
+                        </div>
+                    </div>
+
+                    <!-- Risk Breakdown Metrics -->
+                    <div class="pt-2 space-y-2">
+                        <h4 class="text-xs font-semibold uppercase text-gray-400">Risk Categorization Stack</h4>
+                        <div class="space-y-1.5 text-xs">
+                            <div>
+                                <div class="flex justify-between text-[11px] text-gray-400 mb-0.5"><span>Low Risk
+                                        Markers</span><span id="breakdown-low-lbl">25%</span></div>
+                                <div class="w-full bg-gray-800 h-1.5 rounded-full">
+                                    <div id="breakdown-low-bar"
+                                        class="bg-emerald-500 h-1.5 rounded-full transition-all duration-500"
+                                        style="width: 25%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[11px] text-gray-400 mb-0.5"><span>Medium Risk
+                                        Markers</span><span id="breakdown-med-lbl">45%</span></div>
+                                <div class="w-full bg-gray-800 h-1.5 rounded-full">
+                                    <div id="breakdown-med-bar"
+                                        class="bg-orange-500 h-1.5 rounded-full transition-all duration-500"
+                                        style="width: 45%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[11px] text-gray-400 mb-0.5"><span>High Risk
+                                        Markers</span><span id="breakdown-high-lbl">20%</span></div>
+                                <div class="w-full bg-gray-800 h-1.5 rounded-full">
+                                    <div id="breakdown-high-bar"
+                                        class="bg-red-500 h-1.5 rounded-full transition-all duration-500"
+                                        style="width: 20%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Automated Legal Insights & Actions -->
+                <div
+                    class="bg-[#1a0505] border border-red-900/20 p-5 rounded-xl lg:col-span-2 flex flex-col justify-between">
+                    <div>
+                        <h3
+                            class="text-sm font-bold tracking-wider uppercase text-gray-300 border-b border-red-900/20 pb-2 mb-3">
+                            AI Engine Flags & Recommendations</h3>
+                        <div id="panel-recommendations" class="space-y-2">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+                    <div class="text-[11px] text-gray-500 border-t border-red-900/10 pt-3 mt-4 flex justify-between">
+                        <span>Compliance Engine Framework: Open-Source Models Verified</span>
+                        <span>Audit Token: VER-2026-06-04</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Structural Source Matching Engine Matrix Table -->
+            <div class="bg-[#1a0505] border border-red-900/20 rounded-xl overflow-hidden shadow-xl">
+                <div class="px-5 py-4 border-b border-red-900/20 flex items-center justify-between">
+                    <h3 class="text-sm font-bold tracking-wider uppercase text-gray-300">Semantic Alignment Tracking
+                        Ledger</h3>
+                    <span class="text-xs text-cyan-400 font-mono">Cross-source structural parsing active</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs">
+                        <thead>
+                            <tr
+                                class="bg-black/40 border-b border-red-900/20 text-gray-400 uppercase tracking-wider font-semibold">
+                                <th class="p-4">Source Verified Reference Index</th>
+                                <th class="p-4">Similarity Match</th>
+                                <th class="p-4">Structural Evaluation Class</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-sources" class="divide-y divide-red-900/10 font-mono">
+                            <!-- Dynamic Content Insertion -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Frontend Interactive Script Engine -->
+    <script>
+        // Database simulation of dataset objects matching the parameters precisely
+        const datasets = {
+            doc1: {
+                filename: "Research_Paper_Eg.docx",
+                originality: 92,
+                aiPredictability: 76,
+                copyrightRisk: 67,
+                riskLevel: "MEDIUM",
+                riskClass: "text-orange-400 bg-orange-950/50 border-orange-900/40",
+                svgColors: { o: "text-cyan-500", a: "text-red-500", c: "text-orange-500" },
+                words: "2,456",
+                sourcesCount: "18",
+                aiSections: "5",
+                citations: "4",
+                breakdown: { low: "25%", med: "45%", high: "20%" },
+                recommendations: [
+                    { title: "High AI Probability Cluster Spotted", text: "Section 3 references a pattern structural footprint matching synthetic generation signatures.", type: "warning" },
+                    { title: "Missing Citation Discovered", text: "Paragraph 14 cross-references structural conclusions without referencing foundational literature.", type: "missing" },
+                    { title: "Potential Paraphrased Construction", text: "High semantic intersection isolated against international educational research journals.", type: "info" }
+                ],
+                sources: [
+                    { title: "1. The Impact Of AI On Education Structure", rate: "85%", text: "High matching token sequence found in introductory assertions." },
+                    { title: "2. Artificial Intelligence: A Modern Approach Manual", rate: "67%", text: "Isolated definition structures replicate textbook expressions." },
+                    { title: "3. Academic Frameworks in Higher Education Logs", rate: "48%", text: "Contextual semantic parity noted inside conclusion notes." }
+                ]
+            },
+            doc2: {
+                filename: "Ip_Infringement_Draft.pdf",
+                originality: 41,
+                aiPredictability: 15,
+                copyrightRisk: 88,
+                riskLevel: "CRITICAL",
+                riskClass: "text-red-400 bg-red-950/70 border-red-900/60 animate-pulse",
+                svgColors: { o: "text-red-500", a: "text-emerald-500", c: "text-red-600" },
+                words: "1,820",
+                sourcesCount: "34",
+                aiSections: "1",
+                citations: "12",
+                breakdown: { low: "10%", med: "20%", high: "70%" },
+                recommendations: [
+                    { title: "Severe Copyright Infringement Risk", text: "Substantial literal overlaps identified against proprietary corporate technology whitepapers.", type: "danger" },
+                    { title: "12 Distinct Unattributed Source Clusters", text: "Text segments directly copy expressions without formal citation tags.", type: "missing" }
+                ],
+                sources: [
+                    { title: "1. Proprietary Tech Architecture Patent v4", rate: "94%", text: "Direct structural duplication of text blocks and algorithms." },
+                    { title: "2. Global Licensing Standardization Frameworks", rate: "81%", text: "Extensive copy-pasted operational sequence parameters detected." },
+                    { title: "3. Corporate IP Litigation Precedents Journal", rate: "72%", text: "Verbatim phrases matching standard corporate legal filings." }
+                ]
+            },
+            doc3: {
+                filename: "Corporate_Contract_v2.txt",
+                originality: 98,
+                aiPredictability: 5,
+                copyrightRisk: 12,
+                riskLevel: "LOW RISK",
+                riskClass: "text-emerald-400 bg-emerald-950/50 border-emerald-900/40",
+                svgColors: { o: "text-emerald-400", a: "text-emerald-500", c: "text-emerald-500" },
+                words: "4,110",
+                sourcesCount: "2",
+                aiSections: "0",
+                citations: "0",
+                breakdown: { low: "95%", med: "5%", high: "0%" },
+                recommendations: [
+                    { title: "Excellent Structural Compliance", text: "Document reads authentic, cleanly customized, and matches standard local enterprise definitions.", type: "success" }
+                ],
+                sources: [
+                    { title: "1. Generic Framework Boilerplate Registry", rate: "12%", text: "Standard legal terminology matching regulatory requirements." }
+                ]
+            }
+        };
+
+        function switchDemoDocument(key) {
+            const data = datasets[key];
+            if (!data) return;
+
+            // Filename update
+            document.getElementById("lbl-filename").innerText = data.filename;
+
+            // Plain texts update
+            document.getElementById("lbl-originality").innerText = data.originality + "%";
+            document.getElementById("lbl-ai").innerText = data.aiPredictability + "%";
+            document.getElementById("lbl-copyright").innerText = data.copyrightRisk + "%";
+
+            // Risk badge update
+            const badge = document.getElementById("badge-risk");
+            badge.innerText = data.riskLevel;
+            badge.className = `text-lg font-bold uppercase tracking-wider px-6 py-2 rounded border my-1 ${data.riskClass}`;
+
+            // SVG Stroke adjustment
+            document.getElementById("svg-originality-path").setAttribute("stroke-dasharray", `${data.originality}, 100`);
+            document.getElementById("svg-ai-path").setAttribute("stroke-dasharray", `${data.aiPredictability}, 100`);
+            document.getElementById("svg-copyright-path").setAttribute("stroke-dasharray", `${data.copyrightRisk}, 100`);
+
+            // Apply SVG color adaptations
+            document.getElementById("svg-originality-path").className.baseVal = `${data.svgColors.o} transition-all duration-500`;
+            document.getElementById("svg-ai-path").className.baseVal = `${data.svgColors.a} transition-all duration-500`;
+            document.getElementById("svg-copyright-path").className.baseVal = `${data.svgColors.c} transition-all duration-500`;
+
+            // Footprint Stats updates
+            document.getElementById("stat-words").innerText = data.words;
+            document.getElementById("stat-sources").innerText = data.sourcesCount;
+            document.getElementById("stat-sections").innerText = data.aiSections;
+            document.getElementById("stat-citations").innerText = data.citations;
+
+            // Stack chart update
+            document.getElementById("breakdown-low-lbl").innerText = data.breakdown.low;
+            document.getElementById("breakdown-low-bar").style.width = data.breakdown.low;
+            document.getElementById("breakdown-med-lbl").innerText = data.breakdown.med;
+            document.getElementById("breakdown-med-bar").style.width = data.breakdown.med;
+            document.getElementById("breakdown-high-lbl").innerText = data.breakdown.high;
+            document.getElementById("breakdown-high-bar").style.width = data.breakdown.high;
+
+            // Recommendations panel generation
+            const recPanel = document.getElementById("panel-recommendations");
+            recPanel.innerHTML = "";
+            data.recommendations.forEach(r => {
+                let borderCol = "border-orange-900/40 bg-orange-950/10 text-orange-300";
+                if (r.type === 'danger') borderCol = "border-red-900/50 bg-red-950/20 text-red-300";
+                if (r.type === 'success') borderCol = "border-emerald-900/40 bg-emerald-950/20 text-emerald-300";
+
+                recPanel.innerHTML += `
+                    <div class="p-3 border rounded text-xs flex flex-col space-y-1 ${borderCol}">
+                        <div class="font-bold flex items-center gap-2">⚠️ ${r.title}</div>
+                        <div class="text-gray-400 text-[11px]">${r.text}</div>
+                    </div>
+                `;
+            });
+
+            // Source Table records generation
+            const tableBody = document.getElementById("table-sources");
+            tableBody.innerHTML = "";
+            data.sources.forEach(s => {
+                tableBody.innerHTML += `
+                    <tr class="hover:bg-red-950/10 transition border-b border-red-900/10">
+                        <td class="p-4 font-medium text-gray-300">${s.title}</td>
+                        <td class="p-4 text-cyan-400 font-bold">${s.rate}</td>
+                        <td class="p-4 text-gray-400 text-[11px]">${s.text}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        // Run default profile setup on startup window rendering
+        window.onload = function () {
+            switchDemoDocument("doc1");
+        }
+    </script>
+</body>
+
+</html>
